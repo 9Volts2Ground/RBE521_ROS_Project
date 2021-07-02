@@ -1,0 +1,3 @@
+Using ROS notes:
+    Need to include "source /path/to/package/source.bash" in .aliases file
+    Run "roscore" to run ros
