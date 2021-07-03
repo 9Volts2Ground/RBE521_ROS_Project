@@ -1,8 +1,0 @@
-prefix=/home/vision/project/RBE521_ROS_Project/wanda/catkin_ws/install
-
-Name: test_nodes
-Description: Description of test_nodes
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

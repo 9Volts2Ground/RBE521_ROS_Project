@@ -1,2 +1,0 @@
-test_nodes
--DCATKIN_DEVEL_PREFIX=/home/vision/project/RBE521_ROS_Project/wanda/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vision/project/RBE521_ROS_Project/wanda/catkin_ws/install -G Unix Makefiles
