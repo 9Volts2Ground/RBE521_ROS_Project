@@ -1,3 +1,20 @@
 Using ROS notes:
     Need to include "source /path/to/package/source.bash" in .aliases file
     Run "roscore" to run ros
+
+    catkin_make
+        Compiles all your nodes
+    
+    rosrun <package> <node>
+
+    rosrun rqt_graph rqt_graph
+        Shows graph of all nodes and channels
+    
+    rostopic pub <topic> <msg_type> <args>
+        Publishes to a topic/channel
+        Give it which topic, the message type, and what you're feeding it
+
+        call rostopic pub -1 <><><> to give only 1 message
+
+    rosrun rqt_plot rqt_plot
+        Generates plots of states
