@@ -35,12 +35,13 @@ def ikine_hexapod(P):
 
     R = Rza @ Ryb @ Rzc
 
-    s = np.transpose( np.array( [ [Rm*np.cos(beta/2.0), Rm*np.sin(beta/2.0), 0.0],
-                                  [-Rm*np.sin(np.pi/6.0 - beta/2.0), Rm*np.cos(np.pi/6.0 - beta/2.0), 0.0],
-                                  [-Rm*np.sin(np.pi/6.0 + beta/2.0), Rm*np.cos(np.pi/6.0 + beta/2.0), 0.0],
-                                  [-Rm*np.cos(np.pi/3.0 - beta/2.0), -Rm * np.sin(np.pi/3.0 - beta/2.0), 0.0],
-                                  [-Rm*np.cos(np.pi/3.0 + beta/2.0), -Rm*np.sin(np.pi/3.0 + beta/2.0), 0.0],
-                                  [Rm*np.cos(beta/2.0), -Rm*np.sin(beta/2.0), 0.0] ] ) )
+    # s = np.transpose( np.array( [ [Rm*np.cos(beta/2.0), Rm*np.sin(beta/2.0), 0.0],
+    #                               [-Rm*np.sin(np.pi/6.0 - beta/2.0), Rm*np.cos(np.pi/6.0 - beta/2.0), 0.0],
+    #                               [-Rm*np.sin(np.pi/6.0 + beta/2.0), Rm*np.cos(np.pi/6.0 + beta/2.0), 0.0],
+    #                               [-Rm*np.cos(np.pi/3.0 - beta/2.0), -Rm * np.sin(np.pi/3.0 - beta/2.0), 0.0],
+    #                               [-Rm*np.cos(np.pi/3.0 + beta/2.0), -Rm*np.sin(np.pi/3.0 + beta/2.0), 0.0],
+    #                               [Rm*np.cos(beta/2.0), -Rm*np.sin(beta/2.0), 0.0] ] ) )
+    s = hrd.s
 
     u = np.transpose( np.array( [ [Rf*np.cos(alpha/2.0), Rf*np.sin(alpha/2.0), 0.0],
                                   [-Rf*np.sin(np.pi/6 - alpha/2.0), Rf*np.cos(np.pi/6.0 - alpha/2.0), 0.0],
