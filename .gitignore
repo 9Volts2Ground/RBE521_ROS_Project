@@ -11,3 +11,8 @@ srv_gen/
 .project
 .pydevproject
 *~
+**/devel/.catkin
+**/devel/.rosinstall
+**/devel/_setup_util.py
+**/devel/local_setup.sh
+**/devel/setup.sh
