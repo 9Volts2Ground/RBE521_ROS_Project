@@ -20,6 +20,13 @@ class hardware:
         self.L2 = 90.0      # Femur
         self.L3 = 113.0     # Tibia
 
+        self.legChannel = [ [ 15, 14, 13 ],
+                            [ 16, 17, 18 ],
+                            [ 12, 11, 10 ],
+                            [ 19, 20, 21 ],
+                            [  9,  8, 31 ],
+                            [ 22, 23, 27 ] ]
+
 class channels:
     def __init__(self):
         self.desired_pose = 'desired_pose'
