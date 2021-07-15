@@ -10,11 +10,12 @@ import constants
 sys.path.insert( 1, '../freenove' )
 from Servo import *
 
-# Need to figure out how to add Servo.py to path
-# Or better yet, just copy over the code and make a fresh script
-#from Servo import *
 
 def motor_test(leg, motor, angle):
+
+    leg = int(leg)
+    motor = int(motor)
+    angle = int(angle)
     
     hrd = constants.hardware()
     servo = Servo()
@@ -33,6 +34,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    # Sort through arguments
     if args.angle:
         angle = int( args.angle )
     else:
@@ -48,8 +50,5 @@ if __name__ == "__main__":
     else:
         motor = 0
 
-    print(leg)
-    print(motor)
-    print(angle)
 
     motor_test(leg, motor, angle)

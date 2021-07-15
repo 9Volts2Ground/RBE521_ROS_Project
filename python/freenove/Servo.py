@@ -16,10 +16,13 @@ class Servo:
         time.sleep(0.01)             
 
     #Convert the input angle to the value of pca9685
-    def setServoAngle(self,channel, angle):  
+    def setServoAngle(self,channel, angle):
+
+        # Right half of hips/knees
         if channel < 16:
             date = mapNum(mapNum(angle,0,180,500,2500),0,20000,0,4095) # 0-180 map to 500-2500us ,then map to duty 0-4095
             self.pwm_41.set_pwm(channel, 0, int(date))
+        # Left half hips/knees
         elif channel >= 16 and channel < 32:
             channel-=16
             date = mapNum(mapNum(angle,0,180,500,2500),0,20000,0,4095) # 
