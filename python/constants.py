@@ -20,12 +20,12 @@ class hardware:
         self.L2 = 90.0      # Femur
         self.L3 = 113.0     # Tibia
 
-        self.legChannel = np.array( [ [ 15, 14, 13 ],
-                                      [ 16, 17, 18 ],
-                                      [ 12, 11, 10 ],
-                                      [ 19, 20, 21 ],
-                                      [  9,  8, 31 ],
-                                      [ 22, 23, 27 ] ] )
+        self.legChannel = np.array( [ [ 16, 17, 18 ],       # Front left
+                                      [ 15, 14, 13 ],       # Front right
+                                      [ 19, 20, 21 ],       # Middle left
+                                      [ 12, 11, 10 ],       # Middle right
+                                      [ 22, 23, 27 ],       # Back left
+                                      [  9,  8, 31 ] ] )    # Back right
 
 class channels:
     def __init__(self):
