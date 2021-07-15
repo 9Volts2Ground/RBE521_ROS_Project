@@ -17,4 +17,5 @@ srv_gen/
 **/devel/local_setup.sh
 **/devel/setup.sh
 __pycache__/*
+*.pyc
 
