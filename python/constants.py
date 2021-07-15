@@ -20,12 +20,47 @@ class hardware:
         self.L2 = 90.0      # Femur
         self.L3 = 113.0     # Tibia
 
+        # PWM channel for each motor
         self.legChannel = np.array( [ [ 16, 17, 18 ],       # Front left
                                       [ 15, 14, 13 ],       # Front right
                                       [ 19, 20, 21 ],       # Middle left
                                       [ 12, 11, 10 ],       # Middle right
                                       [ 22, 23, 27 ],       # Back left
                                       [  9,  8, 31 ] ] )    # Back right
+
+        # Motor angle centers
+        self.motorCenter = np.array( [  [ 115, 100, 160 ],
+                                        [ 120, 105, 20 ],
+                                        [ 120, 110, 155 ],
+                                        [ 120, 110, 125 ],
+                                        [ 100, 110, 143 ],
+                                        [ 125, 120, 25 ] ] )
+
+        # Motor angle mins
+        self.motorMin = np.array( [ [ 50, 20, 0 ],
+                                    [ 85, 10, 0 ],
+                                    [ 70, 15, 0 ],
+                                    [ 70, 15, 0 ],
+                                    [ 60, 20, 0 ],
+                                    [ 60, 20, 0 ] ] )
+
+        # Motor angle maxs
+        self.motorMax = np.array( [ [ 150, 180, 180 ],
+                                    [ 175, 180, 180 ],
+                                    [ 160, 180, 180 ],
+                                    [ 170, 180, 180 ],
+                                    [ 160, 180, 180 ],
+                                    [ 165, 180, 180 ] ] )
+
+        # Motor angle command matches matches defined orientation angle
+        self.motorOrientation = np.array( [ [ -1, -1, -1 ],
+                                            [ -1,  1,  1 ],
+                                            [ -1, -1, -1 ],
+                                            [ -1,  1,  1 ],
+                                            [ -1, -1, -1 ],
+                                            [ -1,  1,  1 ] ] )
+
+                    
 
 class channels:
     def __init__(self):
