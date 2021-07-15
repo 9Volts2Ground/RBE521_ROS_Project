@@ -19,7 +19,7 @@ def motor_test(leg, motor, angle):
     hrd = constants.hardware()
     servo = Servo()
 
-
+    print( hrd.legChannel[leg,motor] )
 
     servo.setServoAngle( hrd.legChannel[leg,motor], angle )
 
@@ -34,18 +34,22 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.angle:
-        angle = args.angle
+        angle = int( args.angle )
     else:
-        angle = 0.0
+        angle = int( 0 )
 
     if args.leg:
-        leg = args.leg
+        leg = int( args.leg )
     else:
         leg = 0
 
     if args.motor:
-        motor = args.motor
+        motor = int( args.motor )
     else:
         motor = 0
+
+    print(leg)
+    print(motor)
+    print(angle)
 
     motor_test(leg, motor, angle)
