@@ -1,3 +1,7 @@
+#!/bin/python
+
+import sys
+
 # Code from Freenove robot kit
 sys.path.insert( 1, '../freenove' )
 from Servo import *
