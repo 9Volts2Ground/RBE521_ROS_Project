@@ -16,3 +16,5 @@ srv_gen/
 **/devel/_setup_util.py
 **/devel/local_setup.sh
 **/devel/setup.sh
+__pycache__/*
+
