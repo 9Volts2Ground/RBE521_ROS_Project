@@ -17,12 +17,24 @@ def motor_test(leg, motor, angle):
     motor = int(motor)
     angle = int(angle)
     
+    # Init servo and hardware classes
     hrd = constants.hardware()
     servo = Servo()
 
-    print( hrd.legChannel[leg,motor] )
+    # Translate angle command from robot coordinate frames to calibrated motor commands
+    angle_command = hrd.motorCenter[leg,motor] + hrd.motorOrientation[leg,motor] * angle
 
-    servo.setServoAngle( hrd.legChannel[leg,motor], angle )
+    # Saturate the motor commands to min/max values
+    if angle_command > hrd.motorMax[leg,motor]:
+        angle_command = hrd.motorMax[leg,motor]
+    elif angle_command < hrd.motorMin[leg,motor]:
+        angle_command = hrd.motorMin[leg,motor]
+
+    # Ensure angle is an int to pass into setServoAngle()
+    angle_command = int( angle_command )
+
+    # servo.setServoAngle( hrd.legChannel[leg,motor], angle )
+    servo.setServoAngle( hrd.legChannel[leg,motor], angle_command )
 
 
 if __name__ == "__main__":
