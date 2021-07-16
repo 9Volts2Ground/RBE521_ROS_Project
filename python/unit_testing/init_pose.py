@@ -2,31 +2,35 @@ import sys
 import time
 
 # Custom files
-import constants
+sys.path.append( '..' )
 from motor_test import motor_test
 
 def init_pose():
 
     # Move anlkes
-    angle = 90
+    angle = 45
     for leg in range( 6 ):
+        print(leg)
         motor_test( leg, 2, angle )
-        time.sleep( 0.001 )
+        time.sleep( 0.5 )
 
     time.sleep( 1.0 )
 
     # Move shoulders
-    angle = 0
+    angle = 10
     for leg in range( 6 ):
+        print(leg)
         motor_test( leg, 0, angle )
-        time.sleep( 0.001 )
+        time.sleep( 0.5 )
 
     time.sleep( 1.0 )
 
     # Move knees
-    angle = 90
+    angle = 45
     for leg in range( 6 ):
+        print(leg)
         motor_test( leg, 1, angle )
+        time.sleep( 0.5 )
              
     
 
