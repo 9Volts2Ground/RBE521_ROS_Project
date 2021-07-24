@@ -48,7 +48,8 @@ def ikine2angles( P, Leng, n, R, u ):
         phi[i] = np.arcsin( ( l_prime[2] - Leng[i] * n[2,i] ) / hrd.L1 )
 
         # Angle from ground to knee joint
-        rho[i] = np.arctan2( np.linalg.norm( l_prime[0:2] ), l_prime[2] )
+        # rho[i] = np.arctan2( np.linalg.norm( l_prime[0:2] ), l_prime[2] )
+        rho[i] = np.arctan2( l_prime[2], np.linalg.norm( l_prime[0:2] ) )
 
         # Knee joint angle, positive knee up
         beta[i] = np.arccos( ( hrd.L2**2 + np.linalg.norm( l_prime[0:3] )**2 - hrd.L3**2 ) / \
