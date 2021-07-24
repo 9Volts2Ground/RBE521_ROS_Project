@@ -11,7 +11,7 @@ sys.path.insert( 1, '../freenove' )
 from Servo import *
 
 
-def motor_test(leg, motor, angle):
+def motor_test(servo, leg, motor, angle):
 
     leg = int(leg)
     motor = int(motor)
@@ -19,7 +19,7 @@ def motor_test(leg, motor, angle):
     
     # Init servo and hardware classes
     hrd = constants.hardware()
-    servo = Servo()
+    # servo = Servo()
 
     # Translate angle command from robot coordinate frames to calibrated motor commands
     angle_command = hrd.motorCenter[leg,motor] + hrd.motorOrientation[leg,motor] * angle
@@ -62,5 +62,7 @@ if __name__ == "__main__":
     else:
         motor = 0
 
+    servo = Servo()
 
-    motor_test(leg, motor, angle)
+
+    motor_test(servo, leg, motor, angle)
