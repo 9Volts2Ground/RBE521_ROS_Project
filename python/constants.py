@@ -3,17 +3,17 @@ import numpy as np
 class hardware:
     def __init__(self):
         self.Rm = 250.0/2
-        self.Rf = 650.0/2
-        self.alpha = 40.0
-        self.beta = 85.0
+        self.Rf = 200.0
+        self.alpha = 60.0 * np.pi / 180.0
+        self.beta = 85.0 * np.pi / 180.0
 
         # Vector from body center to hip joints, mm
-        self.s = np.array( [ [ -55,0, 76.162, 0.0 ],        # Front left
-                             [  55,0, 76.162, 0.0 ],        # Front right
-                             [ -83.376, 0.0, 0.0 ],         # Middle left
-                             [  83.376, 0.0, 0.0 ],         # Middle right
-                             [ -55,0, -76.162, 0.0 ],       # Back left
-                             [  55,0, -76.162, 0.0 ] ] )    # Back right
+        self.s = np.transpose( np.array( [ [ -55.0, 76.162, 48.0 ],        # Front left
+                                           [  55.0, 76.162, 48.0 ],        # Front right
+                                           [ -83.376, 0.0, 48.0 ],         # Middle left
+                                           [  83.376, 0.0, 48.0 ],         # Middle right
+                                           [ -55.0, -76.162, 48.0 ],       # Back left
+                                           [  55.0, -76.162, 48.0 ] ] ) )    # Back right
 
         # Leg link lengths, mm
         self.L1 = 32.26     # Coxa
@@ -59,6 +59,13 @@ class hardware:
                                             [ -1,  1,  1 ],
                                             [ -1, -1, -1 ],
                                             [ -1,  1,  1 ] ] )
+
+        self.alpha_offset = np.array( [ np.arctan2( self.s[1,0], self.s[0,0] ),
+                                        np.arctan2( self.s[1,1], self.s[0,1] ),
+                                        np.arctan2( self.s[1,2], self.s[0,2] ),
+                                        np.arctan2( self.s[1,3], self.s[0,3] ),
+                                        np.arctan2( self.s[1,4], self.s[0,4] ),
+                                        np.arctan2( self.s[1,5], self.s[0,5] ) ] )
 
                     
 

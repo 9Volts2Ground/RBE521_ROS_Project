@@ -1,7 +1,7 @@
 import numpy as np 
 import constants
 
-def ikine_hexapod(P):
+def ikine_hexapod( P, u ):
     # P = numpy array
     # P[0:3] = desired linear position
     # P[3:6] = desired orientation
@@ -14,16 +14,13 @@ def ikine_hexapod(P):
 
     # Unpack hardware parameters
     hrd = constants.hardware()
-    Rm = hrd.Rm
-    Rf = hrd.Rf
-    alpha = hrd.alpha
-    beta = hrd.beta
 
 
     # Calculate rotation matrix. Currently uses ZYZ Euler angles
-    Rza = np.array( [ [np.cos(a), -np.sin(a), 0.0],
-                      [np.sin(a), np.cos(a), 0.0],
-                      [0.0, 0.0, 1.0] ] )
+    Rxa = np.array( [ [ 1.0, 0.0, 0.0 ],
+                      [ 0.0, np.cos(a), -np.sin(a) ],
+                      [ 0.0, np.sin(a), np.cos(a) ] ] )
+
 
     Ryb = np.array( [ [np.cos(b), 0.0, np.sin(b)],
                       [0.0, 1.0, 0.0],
@@ -33,22 +30,9 @@ def ikine_hexapod(P):
                       [np.sin(c), np.cos(c), 0.0],
                       [0.0, 0.0, 1.0] ] )
 
-    R = Rza @ Ryb @ Rzc
+    R = Rxa @ Ryb @ Rzc
 
-    # s = np.transpose( np.array( [ [Rm*np.cos(beta/2.0), Rm*np.sin(beta/2.0), 0.0],
-    #                               [-Rm*np.sin(np.pi/6.0 - beta/2.0), Rm*np.cos(np.pi/6.0 - beta/2.0), 0.0],
-    #                               [-Rm*np.sin(np.pi/6.0 + beta/2.0), Rm*np.cos(np.pi/6.0 + beta/2.0), 0.0],
-    #                               [-Rm*np.cos(np.pi/3.0 - beta/2.0), -Rm * np.sin(np.pi/3.0 - beta/2.0), 0.0],
-    #                               [-Rm*np.cos(np.pi/3.0 + beta/2.0), -Rm*np.sin(np.pi/3.0 + beta/2.0), 0.0],
-    #                               [Rm*np.cos(beta/2.0), -Rm*np.sin(beta/2.0), 0.0] ] ) )
     s = hrd.s
-
-    u = np.transpose( np.array( [ [Rf*np.cos(alpha/2.0), Rf*np.sin(alpha/2.0), 0.0],
-                                  [-Rf*np.sin(np.pi/6 - alpha/2.0), Rf*np.cos(np.pi/6.0 - alpha/2.0), 0.0],
-                                  [-Rf*np.sin(np.pi/6.0 + alpha/2.0), Rf*np.cos(np.pi/6.0 + alpha/2.0), 0.0],
-                                  [-Rf*np.cos(np.pi/3.0 - alpha/2.0), -Rf*np.sin(np.pi/3.0 - alpha/2.0), 0.0],
-                                  [-Rf*np.cos(np.pi/3.0 + alpha/2.0), -Rf*np.sin(np.pi/3.0 + alpha/2.0), 0.0],
-                                  [Rf*np.cos(alpha/2.0), -Rf*np.sin(alpha/2.0), 0.0] ] ) )
 
 
     # Init arrays
@@ -57,6 +41,7 @@ def ikine_hexapod(P):
 
     # Loop through each leg to calculate leg info
     for i in range(6):
+
 
         # L = desired full leg vectors
         L = np.array( [ o + R @ s[0:3,i] - u[0:3,i] ] ).T
@@ -71,4 +56,21 @@ def ikine_hexapod(P):
         n = np.hstack( ( n, N ) )
 
 
-    return Leng, n, R, s
+    return Leng, n, R
+
+if __name__ == "__main__":
+
+    hrd = constants.hardware()
+    Rf = hrd.Rf
+    alpha = hrd.alpha
+
+    P = np.array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] )
+
+    u = np.transpose( np.array( [ [Rf*np.cos(alpha/2.0), Rf*np.sin(alpha/2.0), 0.0],
+                                  [-Rf*np.sin(np.pi/6 - alpha/2.0), Rf*np.cos(np.pi/6.0 - alpha/2.0), 0.0],
+                                  [-Rf*np.sin(np.pi/6.0 + alpha/2.0), Rf*np.cos(np.pi/6.0 + alpha/2.0), 0.0],
+                                  [-Rf*np.cos(np.pi/3.0 - alpha/2.0), -Rf*np.sin(np.pi/3.0 - alpha/2.0), 0.0],
+                                  [-Rf*np.cos(np.pi/3.0 + alpha/2.0), -Rf*np.sin(np.pi/3.0 + alpha/2.0), 0.0],
+                                  [Rf*np.cos(alpha/2.0), -Rf*np.sin(alpha/2.0), 0.0] ] ) )
+
+    ikine_hexapod( P, u )

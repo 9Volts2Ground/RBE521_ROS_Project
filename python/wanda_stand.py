@@ -5,6 +5,18 @@ from ikine_hexapod import ikine_hexapod
 from ikine2angles import ikine2angles
 import constants
 
+sys.path.insert( 1, "../unit_testing")
+from move_motor import move_motor
+
+sys.path.insert( 1, '../freenove' )
+from Servo import *
+
+
+# Set this flag if testing in Wanda or Vision
+# Wanda = True
+Wanda = False
+
+
 hrd = constants.hardware()
 Rf = hrd.Rf
 Alph = hrd.alpha
@@ -26,12 +38,19 @@ Leng, n, R = ikine_hexapod( P, u )
 alpha, beta, gamma = ikine2angles( P, Leng, n, R, u )
 
 
-print( "Alph" )
-print(alpha)
 
-print( "beta" )
-print(beta)
+if Wanda:
 
-print( "gamma" )
-print(gamma)
+    servo = Servo()
+
+    for leg, alph in enumerate( alpha ):
+        move_motor( servo, leg, 0, alph )
+
+    for leg, bet in enumerate( beta ):
+        move_motor( servo, leg, 1, bet )
+
+    for leg, gam in enumerate( gamma ):
+        move_motor( servo, leg, 2, gam )
+
+
 
