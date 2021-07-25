@@ -70,7 +70,7 @@ for z in range(100):
         for leg, gam in enumerate( gamma ):
             move_motor( servo, leg, 2, gam )
 
-        time.sleep( .20  )
+        time.sleep( .01  )
 
 
 
